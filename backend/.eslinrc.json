@@ -1,0 +1,66 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "camelcase": "off",
+    "no-console": 2,
+    "no-underscore-dangle": 0,
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "next"
+      }
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ],
+    "no-multi-str": 0,
+    "no-restricted-syntax": [
+      "error",
+      "FunctionExpression",
+      "WithStatement",
+      "BinaryExpression[operator='in']"
+    ],
+    "no-unused-expressions": "off",
+    "no-param-reassign": 0,
+    "object-curly-newline": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "jsdoc/check-param-names": 2,
+    "jsdoc/check-tag-names": 2,
+    "jsdoc/newline-after-description": 2,
+    "jsdoc/require-hyphen-before-param-description": 2,
+    "jsdoc/require-param": 2,
+    "jsdoc/require-param-name": 2,
+    "jsdoc/require-param-type": 2,
+    "jsdoc/require-returns-type": 2,
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": false,
+          "ArrowFunctionExpression": true,
+          "FunctionExpression": true
+        }
+      }
+    ],
+    "linebreak-style": 0
+  },
+  "parserOptions": { "esversion": 6 },
+  "plugins": [
+    "jsdoc"
+  ]
+}

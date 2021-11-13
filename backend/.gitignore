@@ -1,0 +1,13 @@
+**/logs
+**/node_modules
+**/dist
+**/eslint.xml
+**/.env
+**/*~
+**/package-lock.json
+**/*.log
+**/.nyc_output
+**/.vscode
+**/coverage
+**/*build.json
+**/password.txt
