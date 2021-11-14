@@ -3,6 +3,7 @@
         <div class="container" >
             <div class="login-form" >
                 <form [formGroup]="signUpForm">
+                    <!-- below code can be made dynamic by creating an array then iterate that in div -->
                     <div class="group">
                         <label for="pass" class="label">First Name</label>
                         <input [readonly]="!editDetails" [ngClass]="editDetails ? 'grey' : 'not-allowed'" type="text"
