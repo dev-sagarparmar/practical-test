@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -12,6 +13,7 @@ export class AuthComponent implements OnInit {
   loginForm: FormGroup;
   signUpForm: FormGroup;
   radiobutton: any;
+  selectedFile: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,8 +53,23 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.selectedFile = reader.result;
+      };
+      reader.onerror = (error) => {
+        this.selectedFile = null;
+      };
+    }
+  }
+
   registerUser() {
     const data = this.signUpForm.value;
+    data.profile_picture = this.selectedFile;
     this.authService.registerUser(data).subscribe((result: any) => {
       alert(result.message);
     }, (error) => {

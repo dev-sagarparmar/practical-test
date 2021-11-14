@@ -53,6 +53,7 @@ export class RegisterViewComponent implements OnInit {
     this.registerViewService.updateUser(data).subscribe((result: any) => {
       this.ngOnInit();
       this.editDetails = false
+      alert('User edited successfully.');
     }, (error) => {
       alert('Issue while saving user data.');
       this.editDetails = false
