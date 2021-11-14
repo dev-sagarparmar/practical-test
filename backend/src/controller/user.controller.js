@@ -22,7 +22,7 @@ const getUsers = async (req, res, next) => {
  */
 const addUser = async (req, res, next) => {
   const result = await userModel.createUser(req.body);
-  res.json(Format.success(result, 'User Saved Successfully.'));
+  res.json(Format.success(result, 'User registered Successfully.\nKindly login.'));
 };
 
 /**
@@ -45,8 +45,21 @@ const updateUser = async (req, res, next) => {
  * @param {JSON} next
  */
 const deleteUser = async (req, res, next) => {
-  const result = await userModel.deleteUser(req.body.id);
+  const result = await userModel.deleteUser(Number(req.params.id));
   res.json(Format.success(result, 'User Deleted Successfully.'));
 };
 
-export { getUsers, addUser, updateUser, deleteUser };
+/**
+ * Find User controller
+ *
+ * @param {JSON} req
+ * @param {JSON} res
+ * @param {JSON} next
+ */
+const findUser = async (req, res, next) => {
+  const result = await userModel.findUser({ id: req.params.id });
+  delete result.password;
+  res.json(Format.success(result, 'User Fetched Successfully.'));
+};
+
+export { getUsers, addUser, updateUser, deleteUser, findUser };

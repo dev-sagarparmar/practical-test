@@ -19,9 +19,11 @@ const verifyToken = (req, res, next) => {
     return res.json(Format.forbidden(null, 'A token is required for authentication'));
   }
   try {
+    // Verify JWT token
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
   } catch (err) {
+    // return if Invalid token
     return res.json(Format.unAuthorized(err, 'Invalid Token'));
   }
   return next();
@@ -37,12 +39,14 @@ const verifyToken = (req, res, next) => {
  */
 const verifyEmailPassword = async (req, res, next) => {
   const { email, password } = req.body;
+  // fetching user details with the email id
   const account = await userModel.findUser({ email });
   const verifyPwd = account && account.password
     ? bcrypt.compareSync(password, account.password) : null;
   if (!account || !verifyPwd) {
     return res.json(Format.unAuthorized(null, 'Invalid Email/Password'));
   }
+  // If credentials are correct adding a JWT token in the response.
   account.token = jwt.sign(account, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
   return res.json(Format.success(account, 'User logged in Successfully'));
 };

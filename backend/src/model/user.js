@@ -44,7 +44,7 @@ userModel.findUser = async (props) => {
     query += `AND ${key} = ${typeof props[key] === 'string' ? `'${props[key]}'` : props[key]}`;
   });
   const result = await db.query(query);
-  return result && result.length ? result[0] : result;
+  return result && result.length ? result[0] : null;
 };
 
 export { userModel };

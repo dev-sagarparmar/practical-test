@@ -14,6 +14,11 @@ export const Format = {
     data: data || null,
     message: message || 'No Content Found',
   }),
+  resetContent: (data, message) => ({
+    statusCode: 205,
+    data: data || null,
+    message: message || 'No Content Found',
+  }),
   badRequest: (data, message) => ({
     statusCode: 400,
     data: data || null,
