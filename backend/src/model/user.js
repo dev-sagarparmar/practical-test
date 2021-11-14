@@ -38,13 +38,18 @@ userModel.deleteUser = async (id) => {
 };
 
 // FIND BY EMAIL USER
-userModel.findUser = async (props) => {
-  let query = `SELECT * FROM ${users} WHERE 1 = 1`;
+userModel.findUser = async (props = {}, keys = [], returnArray = false) => {
+  let query = `SELECT ${keys && keys.length ? `${keys.join()}` : '*'} FROM ${users} WHERE 1 = 1 `;
   Object.keys(props).forEach((key) => {
-    query += `AND ${key} = ${typeof props[key] === 'string' ? `'${props[key]}'` : props[key]}`;
+    if (props[key] !== null) {
+      query += `AND ${key} ${typeof props[key] === 'string' ? `ILIKE '%${props[key]}%'` : `= ${props[key]}`} `;
+    }
   });
   const result = await db.query(query);
-  return result && result.length ? result[0] : null;
+  if (result && result.length) {
+    return returnArray ? result : result[0];
+  }
+  return null;
 };
 
 export { userModel };

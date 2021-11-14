@@ -11,4 +11,5 @@ export const DB = {
   user: process.env.PGUSER,
   password: process.env.PGPASS,
 };
-export const { DEBUG_SQL, JWT_SECRET, JWT_EXPIRATION } = process.env;
+export const {
+  DEBUG_SQL, JWT_SECRET, JWT_EXPIRATION, AWS_ACCESS_KEY, AWS_SECRET_KEY, BUCKET } = process.env;

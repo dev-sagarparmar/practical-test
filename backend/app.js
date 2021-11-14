@@ -17,6 +17,7 @@ app.use(logger('dev'));
 // To parse incoming request
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb' }));
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

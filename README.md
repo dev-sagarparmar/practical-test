@@ -9,6 +9,9 @@
 	DEBUG_SQL= false
 	JWT_SECRET='your JWT secret'
 	JWT_EXPIRATION='JWT expiration hrs'
+	AWS_ACCESS_KEY='AWS access key'
+	AWS_SECRET_KEY='AWS secret key'
+	BUCKET='AWS bucket name'
     
 #### Use "npm install" to install dependencies
 

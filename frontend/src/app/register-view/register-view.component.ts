@@ -44,10 +44,14 @@ export class RegisterViewComponent implements OnInit {
       });
     }, (error) => {
       alert('Issue while fetching user data.\nTry logging in again.');
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     });
   }
 
+  get signUpFormControls(): any {
+    return this.signUpForm['controls'];
+  }
+  
   editUserDetail() {
     const data = { id: this.userDetails.id, ...this.signUpForm.value };
     this.registerViewService.updateUser(data).subscribe((result: any) => {

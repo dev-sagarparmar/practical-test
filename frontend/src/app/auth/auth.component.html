@@ -9,12 +9,15 @@
                 <form [formGroup]="loginForm">
                     <div class="sign-in-htm">
                         <div class="group">
-                            <label for="user" class="label">E-Mail</label>
+                            <label for="email" class="label">E-Mail</label>
                             <input type="text" class="input" formControlName="email">
+                            <label *ngIf="!loginFormControls.email.valid && loginFormControls.email.errors.required"   class="red">Email is required</label>
+                            <label *ngIf="!loginFormControls.email.valid && loginFormControls.email.errors?.pattern" class="red">Invalid Email.</label>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Password</label>
                             <input type="password" class="input" formControlName="password">
+                            <label *ngIf="!loginFormControls.password.valid" class="red">Password is required</label>
                         </div>
                         <div class="group">
                             <input type="submit" value="Sign In" [ngClass]="loginForm.valid ? '' : 'grey'"
@@ -27,10 +30,13 @@
                         <div class="group">
                             <label for="user" class="label">Email</label>
                             <input id="user" type="text" class="input" formControlName="email">
+                            <label *ngIf="!signUpFormControls.email.valid && signUpFormControls.email.errors.required"   class="red">Email is required</label>
+                            <label *ngIf="!signUpFormControls.email.valid && signUpFormControls.email.errors?.pattern" class="red">Invalid Email.</label>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">First Name</label>
                             <input type="text" class="input" formControlName="firstname">
+                            <label *ngIf="!signUpFormControls.firstname.valid && signUpFormControls.firstname.errors.required" class="red">First name is required</label>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Middle Name</label>
@@ -39,10 +45,12 @@
                         <div class="group">
                             <label for="pass" class="label">Last Name</label>
                             <input type="text" class="input" formControlName="lastname">
+                            <label *ngIf="!signUpFormControls.lastname.valid && signUpFormControls.lastname.errors.required" class="red">Last name is required.</label>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Password</label>
                             <input type="password" class="input" data-type="password" formControlName="password">
+                            <label *ngIf="!signUpFormControls.password.valid && signUpFormControls.password.errors.required" class="red">Password is required.</label>
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Profile Image</label>

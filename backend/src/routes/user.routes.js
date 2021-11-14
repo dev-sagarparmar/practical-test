@@ -6,7 +6,7 @@ import { uniqueEmailValidate } from '../../middlewares/user';
 const app = Router();
 
 // used middleware to validate token or email id and added controllers
-app.route('/').get(verifyToken, getUsers);
+app.route('/').put(verifyToken, getUsers);
 app.route('/update').put(verifyToken, updateUser);
 app.route('/add').post(uniqueEmailValidate, addUser);
 app.route('/delete/:id').delete(verifyToken, deleteUser);

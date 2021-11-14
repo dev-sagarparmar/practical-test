@@ -1,13 +1,17 @@
 <div class="login-wrap">
     <div class="login-html" [style.background]="userDetails ? 'url(' + userDetails.profile_image + ')' : 'black'">
-        <div class="container" >
-            <div class="login-form" >
+        <div class="container">
+            <div class="login-form">
                 <form [formGroup]="signUpForm">
                     <!-- below code can be made dynamic by creating an array then iterate that in div -->
                     <div class="group">
                         <label for="pass" class="label">First Name</label>
                         <input [readonly]="!editDetails" [ngClass]="editDetails ? 'grey' : 'not-allowed'" type="text"
                             class="input" formControlName="firstname">
+                        <label
+                            *ngIf="!signUpFormControls.firstname.valid && signUpFormControls.firstname.errors.required"
+                            class="red">First name is required</label>
+
                     </div>
                     <div class="group">
                         <label for="pass" class="label">Middle Name</label>
@@ -18,13 +22,18 @@
                         <label for="pass" class="label">Last Name</label>
                         <input [readonly]="!editDetails" [ngClass]="editDetails ? 'grey' : 'not-allowed'" type="text"
                             class="input" formControlName="lastname">
+                        <label
+                            *ngIf="!signUpFormControls.lastname.valid && signUpFormControls.lastname.errors.required"
+                            class="red">Last name is required</label>
+
                     </div>
                     <div class="group">
                         <button class="button" (click)="editDetails = !editDetails">{{editDetails ? 'Cancel Edit' :
                             'Edit'}}</button>
-                        <button class="button blue" style="margin-top: 10px;" (click)="editUserDetail()">Submit</button>
-                        <button class="button red" style="margin-top: 30px;" (click)="logoutUser()">Log Out</button>
-                        <button class="button red" style="margin-top: 10px;" (click)="deleteUser()">Delete User</button>
+                        <button class="button blue" style="margin-top: 10px;" [disabled]="!signUpForm.valid"
+                            (click)="editUserDetail()">Submit</button>
+                        <button class="button red-btn" style="margin-top: 30px;" (click)="logoutUser()">Log Out</button>
+                        <button class="button red-btn" style="margin-top: 10px;" (click)="deleteUser()">Delete User</button>
                     </div>
                 </form>
             </div>

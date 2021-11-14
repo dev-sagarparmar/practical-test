@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
   ) {
     this.loginForm = this.formBuilder.group({
-      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(/\S+@\S+\.\S+/)])),
       password: new FormControl(null, Validators.compose([Validators.required])),
     });
 
@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
       firstname: new FormControl(null, Validators.compose([Validators.required])),
       lastname: new FormControl(null, Validators.compose([Validators.required])),
       middlename: [''],
-      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(/\S+@\S+\.\S+/)])),
       profile_picture: [''],
       password: new FormControl(null, Validators.compose([Validators.required])),
     });
@@ -37,12 +37,19 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  get loginFormControls(): any {
+    return this.loginForm['controls'];
+  }
+  get signUpFormControls(): any {
+    return this.signUpForm['controls'];
+  }
+  
   submitLoginForm() {
     const data = this.loginForm.value;
     this.authService.login(data).subscribe((result: any) => {
       if (result.statusCode === 200) {
         const { data: { token, id } } = result;
-        this.router.navigate([`/dashboard/${id}`]);
+        this.router.navigate([`/dashboard`]);
         localStorage.setItem('token', token);
       } else {
         alert(result.message)

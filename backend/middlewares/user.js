@@ -11,7 +11,6 @@ import { Format } from '../common/format';
  */
 export const uniqueEmailValidate = async (req, res, next) => {
   const { email } = req.body;
-  // Validating if email is already taken
   const alreadyTaken = await userModel.findUser({ email });
   if (alreadyTaken) {
     return res.json(Format.resetContent(null, 'Email address already taken.'));

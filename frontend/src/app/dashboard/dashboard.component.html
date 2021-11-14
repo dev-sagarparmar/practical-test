@@ -1,0 +1,19 @@
+<div>
+    <label for="Search User">Search User </label> 
+    <input type="text" [(ngModel)]="searchUser">
+    <button (click)="getUserData()">Search</button>
+</div>
+<table class="my-table">
+    <thead class="my-table headers">
+        <tr>
+            <th *ngFor="let column of columns">{{column}}</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody class="my-table body">
+        <tr *ngFor="let json of dataSet; index as rowIndex">
+            <td  *ngFor="let column of columns; index as i">{{json[column]}}</td>
+            <td><Button [routerLink]="['/dashboard/'+ json['id']]">Edit</Button></td>
+        </tr>
+    </tbody>
+</table>
